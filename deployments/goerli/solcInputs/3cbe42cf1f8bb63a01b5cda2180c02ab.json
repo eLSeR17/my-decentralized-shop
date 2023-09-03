@@ -1,0 +1,41 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "@openzeppelin/contracts/access/Ownable.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts (last updated v4.9.0) (access/Ownable.sol)\n\npragma solidity ^0.8.0;\n\nimport \"../utils/Context.sol\";\n\n/**\n * @dev Contract module which provides a basic access control mechanism, where\n * there is an account (an owner) that can be granted exclusive access to\n * specific functions.\n *\n * By default, the owner account will be the one that deploys the contract. This\n * can later be changed with {transferOwnership}.\n *\n * This module is used through inheritance. It will make available the modifier\n * `onlyOwner`, which can be applied to your functions to restrict their use to\n * the owner.\n */\nabstract contract Ownable is Context {\n    address private _owner;\n\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\n\n    /**\n     * @dev Initializes the contract setting the deployer as the initial owner.\n     */\n    constructor() {\n        _transferOwnership(_msgSender());\n    }\n\n    /**\n     * @dev Throws if called by any account other than the owner.\n     */\n    modifier onlyOwner() {\n        _checkOwner();\n        _;\n    }\n\n    /**\n     * @dev Returns the address of the current owner.\n     */\n    function owner() public view virtual returns (address) {\n        return _owner;\n    }\n\n    /**\n     * @dev Throws if the sender is not the owner.\n     */\n    function _checkOwner() internal view virtual {\n        require(owner() == _msgSender(), \"Ownable: caller is not the owner\");\n    }\n\n    /**\n     * @dev Leaves the contract without owner. It will not be possible to call\n     * `onlyOwner` functions. Can only be called by the current owner.\n     *\n     * NOTE: Renouncing ownership will leave the contract without an owner,\n     * thereby disabling any functionality that is only available to the owner.\n     */\n    function renounceOwnership() public virtual onlyOwner {\n        _transferOwnership(address(0));\n    }\n\n    /**\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\n     * Can only be called by the current owner.\n     */\n    function transferOwnership(address newOwner) public virtual onlyOwner {\n        require(newOwner != address(0), \"Ownable: new owner is the zero address\");\n        _transferOwnership(newOwner);\n    }\n\n    /**\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\n     * Internal function without access restriction.\n     */\n    function _transferOwnership(address newOwner) internal virtual {\n        address oldOwner = _owner;\n        _owner = newOwner;\n        emit OwnershipTransferred(oldOwner, newOwner);\n    }\n}\n"
+    },
+    "@openzeppelin/contracts/utils/Context.sol": {
+      "content": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\n\npragma solidity ^0.8.0;\n\n/**\n * @dev Provides information about the current execution context, including the\n * sender of the transaction and its data. While these are generally available\n * via msg.sender and msg.data, they should not be accessed in such a direct\n * manner, since when dealing with meta-transactions the account sending and\n * paying for execution may not be the actual sender (as far as an application\n * is concerned).\n *\n * This contract is only required for intermediate, library-like contracts.\n */\nabstract contract Context {\n    function _msgSender() internal view virtual returns (address) {\n        return msg.sender;\n    }\n\n    function _msgData() internal view virtual returns (bytes calldata) {\n        return msg.data;\n    }\n}\n"
+    },
+    "contracts/GuessNumber.sol": {
+      "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.8;\n\n// Uncomment this line to use console.log\n// import \"hardhat/console.sol\";\n\n// Contract address 0x4298A5aF5AFa8200B9fBb3A6b94b113413B6747d\n\nimport \"../node_modules/@openzeppelin/contracts/access/Ownable.sol\";\n\ncontract GuessNumber is Ownable{\n    \n    address winner;\n    address _owner;\n\n    uint8 public i_secretNumber;\n    uint public fee;\n    uint public prize;\n    uint private gameAmount;\n    bool guessed = true;\n    bool a = false;\n\n    error GuessNumber_GameIsFinished(address);\n    error GuessNumber_GameInProcess(address);\n    error GuessNumber_WinnerCannotPlay(address);\n    error GuessNumber_NotEnoughMoney();\n    error GuessNumber_NotWinner(address);\n\n    //Set the number to guess, the owner of the game, and the games that have been played so far.\n    constructor(){\n        fee = 10**14 wei;\n        _owner = msg.sender;\n        winner = msg.sender;\n        gameAmount = 0;\n    }\n\n    function tryToGuess(uint8 myNumber) public payable {\n        if(guessed){\n            revert GuessNumber_GameIsFinished(msg.sender);\n        }\n        //require(msg.sender != _owner, \"Owner cannot play the game\");\n        if(msg.value < fee){\n            revert GuessNumber_NotEnoughMoney();\n        }\n        if(msg.sender == winner){\n            revert GuessNumber_WinnerCannotPlay(msg.sender);\n        }\n        (bool success_pay, ) = address(this).call{value: msg.value}(\"\");\n        prize = address(this).balance;\n        if (myNumber == i_secretNumber) {\n            guessed = true;\n            winner = msg.sender;\n            (bool success_receive, ) = winner.call{value: address(this).balance}(\"\");\n        }\n    }\n\n    function createGame(uint8 secretNumber) public payable{\n        if(!guessed){\n            revert GuessNumber_GameInProcess(msg.sender);\n        }\n        if(msg.sender != winner){\n            revert GuessNumber_NotWinner(msg.sender);\n        }\n        guessed = false;\n        gameAmount++;\n        i_secretNumber = secretNumber;      \n    }\n\n    function checkGuessed() public view returns (bool) {\n        return guessed;\n    }\n\n    function gameNumber() public view returns (uint){\n        return gameAmount;\n    }\n\n    function checkFee() public view returns (uint){\n        return fee;\n    }\n\n    function checkPrize() public view returns (uint){\n        return prize;\n    }\n\n    function checkWinner() public view returns (address){\n        return winner;\n    }\n\n    function checkSecretNumber() public view returns (uint8){\n        return i_secretNumber;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts\Shop.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> Shop.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>17/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>8/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.5% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>7/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>27/28</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.8;
+&nbsp;
+import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
+import "./Users.sol";
+&nbsp;
+error Shop__NotEnoughMoney(uint requiredPrice);
+error Shop__NotListed(uint notExistingId);
+error Shop__AlreadyOwner(uint ownedItemId);
+error Shop__NotOwner(uint notOwnedItemId);
+&nbsp;
+contract Shop is Ownable, Users{
+    
+    Item[] public itemList;
+    uint public itemAmount;
+&nbsp;
+    
+    struct Item{
+        string name;
+        string description;
+        string picture; // You can upload your photo to IPFS and set the link to the variable 'picture'
+        uint id;
+        address owner;
+        uint price; // The price in wei
+    }
+&nbsp;
+&nbsp;
+    constructor(){
+       _owner = msg.sender; 
+    }
+&nbsp;
+    event ItemListed(string indexed name, address indexed seller, uint indexed id, uint price);
+&nbsp;
+    event ItemBought(string indexed name, address indexed buyer, uint indexed id);
+    
+    event ItemCancelled(string indexed name, uint indexed id);
+&nbsp;
+    modifier isListed(uint _id){
+        if(_id &gt;= itemList.length){
+            revert Shop__NotListed(_id);
+        }
+        _;
+    }
+&nbsp;
+    function listItem(string memory _name, string memory _description, string memory _picture, uint _price) public{
+        itemList.push(Item(_name, _description, _picture, itemList.length, msg.sender, _price));
+        itemAmount++;
+        emit ItemListed(_name, msg.sender, itemList.length - 1, _price);
+    }
+&nbsp;
+    function buyItem(uint _id) public payable isListed(_id){
+        uint price = itemList[_id].price;
+        uint discount = price * userLevel[msg.sender] * 5 / 100;
+        uint finalPrice = price - discount;
+        if(msg.value &lt; finalPrice){
+            revert Shop__NotEnoughMoney(itemList[_id].price);
+        }
+        if(msg.sender == itemList[_id].owner){
+            revert Shop__AlreadyOwner(_id);
+        }
+        givePoints(itemList[_id].owner, price / 50);
+        itemList[_id].owner = msg.sender;
+        givePoints(msg.sender, finalPrice / 50);
+        itemAmount--;
+        emit ItemBought(itemList[_id].name, msg.sender, _id);
+        delete itemList[_id];
+    }
+&nbsp;
+    function cancelItem(uint _id) public isListed(_id){
+        if(itemList[_id].owner != msg.sender){
+            revert Shop__NotOwner(_id);
+        }
+        itemAmount--;
+        emit ItemCancelled(itemList[_id].name, _id);
+        delete itemList[_id];
+    }
+&nbsp;
+    function getListedItem(uint _position) public view returns (string memory){
+        return itemList[itemList.length - _position - 1].name;
+    }
+&nbsp;
+    function getItemAmount() public view returns (uint){
+        return itemAmount;
+    }
+    
+<span class="fstat-no" title="function not covered" >    function givePoints() pure internal{</span>
+        super.givePoints;
+    }
+    
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Sep 01 2023 01:43:23 GMT+0200 (hora de verano de Europa central)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
